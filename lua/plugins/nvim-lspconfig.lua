@@ -43,9 +43,6 @@ return {
           keys = {
             { "<leader>me", funcs.metals_cmds, desc = "Metals commands" },
             { "<leader>mc", funcs.metals_compile_cascade, desc = "Metals compile cascade" },
-            { "<leader>fh", "<cmd>Telescope heading<cr>", desc = "Telescope Headings", remap = false },
-            { "<leader>fk", "<cmd>Telescope keymaps<cr>", desc = "Telescope Keymaps", remap = false },
-            { "<leader>fp", "<cmd>NeovimProjectDiscover<CR>", desc = "Open project", remap = false },
             { "K", funcs.lsp_hover, desc = "LSP Hover", remap = false },
             { "<leader>cD", funcs.lsp_definitions_custom, desc = "LSP Definitions", remap = false },
             { "<leader>cR", "<cmd>Trouble lsp_references<cr>", desc = "LSP References (Trouble)", remap = false },

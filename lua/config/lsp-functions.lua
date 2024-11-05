@@ -303,4 +303,8 @@ M.metals_toggle_treeview = function()
   require("metals.tvp").toggle_tree_view()
 end
 
+M.find_projects = function()
+  require("telescope").extensions.projects.projects({})
+end
+
 return M

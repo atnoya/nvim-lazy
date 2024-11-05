@@ -79,7 +79,7 @@ return {
     keys = {
       { "<leader>fh", "<cmd>Telescope heading<cr>", desc = "Telescope Headings", remap = false },
       { "<leader>fk", "<cmd>Telescope keymaps<cr>", desc = "Telescope Keymaps", remap = false },
-      { "<leader>fp", "<cmd>NeovimProjectDiscover<CR>", desc = "Open project", remap = false },
+      { "<leader>fp", require("config.lsp-functions").find_projects, desc = "Open project", remap = false },
     },
     opts = function()
       local custom_colors = require("config.options")
@@ -89,32 +89,15 @@ return {
       }
     end,
   },
-
   {
-    "coffebar/neovim-project",
-    opts = {
-      projects = { -- define project roots
-        "~/Projects/*",
-        "~/MyProjects/*",
-        "~/.config/*",
-      },
-      picker = {
-        type = "telescope", -- or "fzf-lua"
-      },
-    },
-    init = function()
-      -- enable saving the state of plugins in the session
-      vim.opt.sessionoptions:append("globals") -- save global variables that start with an uppercase letter and contain at least one lowercase letter.
+    "ahmedkhalf/project.nvim",
+    config = function()
+      require("project_nvim").setup({
+        patterns = { ".git", "Makefile", "*.sln", "build/env.sh" },
+      })
     end,
     dependencies = {
-      { "nvim-lua/plenary.nvim" },
-      -- optional picker
-      { "nvim-telescope/telescope.nvim", tag = "0.1.4" },
-      -- optional picker
-      { "ibhagwan/fzf-lua" },
-      { "Shatur/neovim-session-manager" },
+      { "nvim-telescope/telescope.nvim" },
     },
-    lazy = false,
-    priority = 100,
   },
 }

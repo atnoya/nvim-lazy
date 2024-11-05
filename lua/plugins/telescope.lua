@@ -9,6 +9,7 @@ return {
       local themes = require("telescope.themes")
       local fb_actions = telescope.extensions.file_browser.actions
 
+      telescope.load_extension("projects")
       telescope.load_extension("heading")
       telescope.load_extension("file_browser")
       telescope.load_extension("ui-select")
