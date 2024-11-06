@@ -81,13 +81,9 @@ return {
       { "<leader>fk", "<cmd>Telescope keymaps<cr>", desc = "Telescope Keymaps", remap = false },
       { "<leader>fp", require("config.lsp-functions").find_projects, desc = "Open project", remap = false },
     },
-    opts = function()
-      local custom_colors = require("config.options")
-      custom_colors.set_telescope_custom_colors_gruvbox()
-      return {
-        colorscheme = "gruvbox",
-      }
-    end,
+    opts = {
+      colorscheme = "gruvbox",
+    }
   },
   {
     "ahmedkhalf/project.nvim",
@@ -98,6 +94,17 @@ return {
     end,
     dependencies = {
       { "nvim-telescope/telescope.nvim" },
+    },
+  },
+  {
+    "nvim-tree/nvim-web-devicons",
+  },
+  {
+    "nvim-neo-tree/neo-tree.nvim",
+    opts = {
+      filesystem = {
+        group_empty_dirs = true,
+      },
     },
   },
 }
