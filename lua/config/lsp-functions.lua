@@ -45,7 +45,7 @@ local get_symbol_display = function(entry, type_highlight)
 end
 
 local scala_path = function(filename)
-  local transformed_path = Path:new(filename):make_relative(vim.loop.cwd())
+  local transformed_path = Path:new(filename):make_relative(vim.fn.getcwd())
   transformed_path = string.gsub(transformed_path, ".metals/readonly/dependencies/.+%.jar/", ".M/")
   transformed_path = string.gsub(transformed_path, "src/main/scala/", "../")
   transformed_path = string.gsub(transformed_path, "src/main/java/", "../")
@@ -241,7 +241,7 @@ local signs = {}
 
 signs[vim.diagnostic.severity.ERROR] = ""
 signs[vim.diagnostic.severity.WARN] = ""
-signs[vim.diagnostic.severity.HINT] = ""
+signs[vim.diagnostic.severity.HINT] = "󰱒"
 signs[vim.diagnostic.severity.INFO] = ""
 
 local sign_hls = {}

@@ -37,25 +37,45 @@ return {
   },
   {
     "neovim/nvim-lspconfig",
+    init = function()
+      local keys = require("lazyvim.plugins.lsp.keymaps").get()
+      keys[#keys + 1] = { "<leader>cx", funcs.show_diagnostic_popup, desc = "Diagnostic popup current line" }
+      keys[#keys + 1] = { "K", funcs.lsp_hover, desc = "LSP Hover", remap = false }
+      keys[#keys + 1] = { "<leader>cD", funcs.lsp_definitions_custom, desc = "LSP Definitions", remap = false }
+      keys[#keys + 1] =
+        { "<leader>cR", "<cmd>Trouble lsp_references<cr>", desc = "LSP References (Trouble)", remap = false }
+      keys[#keys + 1] = { "<leader>cds", funcs.lsp_document_symbols_custom, desc = "LSP Doc Symbols", remap = false }
+      keys[#keys + 1] = { "<leader>ci", funcs.lsp_implementations_custom, desc = "LSP Implementations", remap = false }
+      keys[#keys + 1] = { "<leader>cr", funcs.lsp_references_custom, desc = "LSP References", remap = false }
+      keys[#keys + 1] =
+        { "<leader>cws", funcs.lsp_dynamic_workspace_symbols_custom, desc = "LSP WS Symbols", remap = false }
+      keys[#keys + 1] = { "<leader>xtd", funcs.diagnostics_current_buf_t, desc = "Current buffer diagnostics" }
+      keys[#keys + 1] = { "<leader>xtw", funcs.diagnostics_errors_t, desc = "All workspace errors" }
+      keys[#keys + 1] = { "<leader>xtx", funcs.diagnostics_all_t, desc = "All workspace diagnostics" }
+      keys[#keys + 1] = { "<leader>csh", funcs.signature_help, desc = "Signature Help" }
+      keys[#keys + 1] = { "K", "<cmd>echo 'hello'<cr>" }
+    end,
     opts = {
       servers = {
+        rust_analyzer = {
+          keys = {},
+        },
         metals = {
           keys = {
             { "<leader>me", funcs.metals_cmds, desc = "Metals commands" },
             { "<leader>mc", funcs.metals_compile_cascade, desc = "Metals compile cascade" },
-            { "K", funcs.lsp_hover, desc = "LSP Hover", remap = false },
-            { "<leader>cD", funcs.lsp_definitions_custom, desc = "LSP Definitions", remap = false },
-            { "<leader>cR", "<cmd>Trouble lsp_references<cr>", desc = "LSP References (Trouble)", remap = false },
-            { "<leader>cds", funcs.lsp_document_symbols_custom, desc = "LSP Doc Symbols", remap = false },
-            { "<leader>ci", funcs.lsp_implementations_custom, desc = "LSP Implementations", remap = false },
-            { "<leader>cr", funcs.lsp_references_custom, desc = "LSP References", remap = false },
-            { "<leader>cws", funcs.lsp_dynamic_workspace_symbols_custom, desc = "LSP WS Symbols", remap = false },
-            { "<leader>xtd", funcs.diagnostics_current_buf_t, desc = "Current buffer diagnostics" },
-            { "<leader>xtw", funcs.diagnostics_errors_t, desc = "All workspace errors" },
-            { "<leader>xtx", funcs.diagnostics_all_t, desc = "All workspace diagnostics" },
-            { "<leader>cc", funcs.show_diagnostic_popup, desc = "Diagnostic popup current line" },
-            { "<leader>ch", funcs.lsp_hover, desc = "Hover" },
-            { "<leader>csh", funcs.signature_help, desc = "Signature Help" },
+            -- { "K", funcs.lsp_hover, desc = "LSP Hover", remap = false },
+            -- { "<leader>cD", funcs.lsp_definitions_custom, desc = "LSP Definitions", remap = false },
+            -- { "<leader>cR", "<cmd>Trouble lsp_references<cr>", desc = "LSP References (Trouble)", remap = false },
+            -- { "<leader>cds", funcs.lsp_document_symbols_custom, desc = "LSP Doc Symbols", remap = false },
+            -- { "<leader>ci", funcs.lsp_implementations_custom, desc = "LSP Implementations", remap = false },
+            -- { "<leader>cr", funcs.lsp_references_custom, desc = "LSP References", remap = false },
+            -- { "<leader>cws", funcs.lsp_dynamic_workspace_symbols_custom, desc = "LSP WS Symbols", remap = false },
+            -- { "<leader>xtd", funcs.diagnostics_current_buf_t, desc = "Current buffer diagnostics" },
+            -- { "<leader>xtw", funcs.diagnostics_errors_t, desc = "All workspace errors" },
+            -- { "<leader>xtx", funcs.diagnostics_all_t, desc = "All workspace diagnostics" },
+            -- { "<leader>cx", funcs.show_diagnostic_popup, desc = "Diagnostic popup current line" },
+            -- { "<leader>csh", funcs.signature_help, desc = "Signature Help" },
             { "<leader>mtc", funcs.metals_reveal_treeview, desc = "Reveal file in LSP Tree view" },
             { "<leader>mtv", funcs.metals_toggle_treeview, desc = "Toggle LSP Tree view" },
           },
